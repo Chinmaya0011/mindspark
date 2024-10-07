@@ -1,0 +1,123 @@
+/* Footer.module.css */
+.footerContainer {
+    background-color: #fff; /* White background */
+    color: #333; /* Dark text color for contrast */
+    padding: 2rem 1rem; /* Top/bottom and left/right padding */
+    display: flex; /* Use flexbox for layout */
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center items horizontally */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for 3D effect */
+    border-top: 1px solid red; /* Add 1px red border on top */
+}
+
+
+.footerContent {
+    display: flex; /* Use flexbox for footer content */
+    justify-content: space-between; /* Space between sections */
+    width: 100%; /* Full width */
+    max-width: 1200px; /* Maximum width for the footer */
+    margin: 0 auto; /* Center the footer */
+}
+
+.navContainer,
+.contactContainer,
+.socialContainer {
+    flex: 1; /* Each section takes equal space */
+    margin: 0 1rem; /* Horizontal spacing between sections */
+}
+
+.footerTitle {
+    font-size: 1.5rem; /* Title size */
+    margin-bottom: 1rem; /* Space below title */
+    text-align: left; /* Align title to the left */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Subtle text shadow for 3D effect */
+}
+
+.navList {
+    list-style-type: none; /* Remove bullet points */
+    padding: 0; /* Remove padding */
+}
+
+.navItem {
+    color: #333; /* Dark text color */
+    text-decoration: none; /* Remove underline */
+    margin-bottom: 0.5rem; /* Space between links */
+    display: block; /* Block display for better click area */
+    transition: color 0.3s; /* Smooth color transition */
+}
+
+.navItem:hover {
+    color: #ff69b4; /* Change color on hover */
+    transform: translateY(-2px); /* Lift effect on hover */
+}
+
+.contactAddress {
+    margin: 0; /* Reset margin for address */
+}
+
+.socialContainer {
+    align-items: center; /* Align icons vertically */
+    justify-content: flex-start; /* Align icons to the left */
+}
+
+.socialIcons {
+    display: flex; /* Use flexbox for icon layout */
+    gap: 1rem; /* Space between icons */
+}
+
+.socialIcon {
+    color: #333; /* Dark color for icons */
+    font-size: 2rem; /* Icon size */
+    transition: color 0.3s, transform 0.2s; /* Smooth color and transform transition */
+}
+
+.socialIcon:hover {
+    color: #ff69b4; /* Change icon color on hover */
+    transform: scale(1.1); /* Slightly increase size on hover */
+}
+
+.footerBottom {
+    text-align: center; /* Center text */
+    margin-top: 2rem; /* Space above copyright */
+    font-size: 0.875rem; /* Smaller font size for copyright */
+}
+
+/* Media Queries */
+
+/* For screens smaller than 768px */
+@media (max-width: 768px) {
+    .footerContent {
+        flex-direction: column; /* Stack sections vertically */
+        align-items: center; /* Center align for smaller screens */
+    }
+
+    .navContainer,
+    .contactContainer,
+    .socialContainer {
+        margin: 1rem 0; /* Add vertical margin for spacing */
+        text-align: center; /* Center align text */
+    }
+
+    .socialIcons {
+        justify-content: center; /* Center social icons */
+    }
+}
+
+/* For screens smaller than 576px */
+@media (max-width: 576px) {
+    .footerTitle {
+        font-size: 1.25rem; /* Reduce title size */
+    }
+
+    .navItem {
+        font-size: 0.9rem; /* Smaller font size for navigation items */
+    }
+
+    .socialIcon {
+        font-size: 1.5rem; /* Reduce social icon size */
+    }
+
+    .footerBottom {
+        font-size: 0.75rem; /* Smaller font size for copyright */
+    }
+}

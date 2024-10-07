@@ -1,0 +1,127 @@
+Hero.module.css
+
+
+.heroContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(to bottom, #ff99cc, #ffcccc);
+}
+
+.imageContainer {
+  flex: 1;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.heroImage {
+  width: 100%;
+  height: 80vh;
+  object-fit: cover;
+  border-radius: 1rem;
+}
+
+.textContainer {
+  flex: 1;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.heroText {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  margin-bottom: 2rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.heroButton {
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 2.5rem;
+  cursor: pointer;
+  background-color: #45ed28;
+  color: #fff;
+  transition: background-color 0.2s ease;
+}
+
+.heroButton:hover {
+  background-color: #ff99cc;
+}
+
+/* Media Queries */
+
+@media (max-width: 992px) {
+  .heroContainer {
+    flex-direction: column;
+  }
+  .imageContainer {
+    order: 2;
+  }
+  .textContainer {
+    order: 1;
+  }
+  .heroImage {
+    height: 50vh;
+  }
+}
+
+@media (max-width: 768px) {
+  .heroText {
+    font-size: 2rem;
+  }
+  .heroButton {
+    padding: 1rem 2rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .heroContainer {
+    padding: 1rem;
+  }
+  .heroImage {
+    height: 30vh;
+  }
+  .heroText {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .heroButton {
+    padding: 0.5rem 1rem;
+  }
+  .heroContainer {
+    flex-direction: column;
+    height: auto;
+    padding: 2rem;
+  }
+  .imageContainer {
+    padding: 0;
+  }
+  .heroImage {
+    width: 100%;
+    height: 30vh;
+    object-fit: cover;
+  }
+  .textContainer {
+    padding: 1rem;
+    background: none;
+    box-shadow: none;
+  }
+  .heroText {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+}
+

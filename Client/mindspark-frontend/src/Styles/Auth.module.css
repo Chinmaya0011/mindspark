@@ -1,0 +1,130 @@
+/* Auth.module.css */
+
+.auth {
+    background-color: #f0f2f5; /* Light background color for the entire page */
+    font-family: Arial, sans-serif; /* Font family for the application */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    display: flex; /* Use flexbox to center content */
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    height: 100vh;
+  }
+  
+  .authContainer {
+    max-width: 700px; /* Increased maximum width of the container */
+    margin: auto; /* Center horizontally */
+    padding: 20px; /* Padding inside the container */
+    border: 1px solid #ccc; /* Border around the container */
+    border-radius: 8px; /* Rounded corners */
+    background: linear-gradient(135deg, #ffffff, #e0e7ff); /* Gradient background */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+    transition: all 0.3s ease; /* Smooth transitions for hover effects */
+  }
+  
+  .heading {
+    text-align: center; /* Center text */
+    margin-bottom: 20px; /* Space below the heading */
+    font-size: 24px; /* Font size for heading */
+    color: #333; /* Color for the heading */
+  }
+  
+  .form {
+    display: flex; /* Use flexbox for the form */
+    flex-direction: column; /* Arrange items vertically */
+  }
+  
+  .input {
+    margin-bottom: 15px; /* Space below input fields */
+    padding: 10px; /* Padding inside input fields */
+    border: 1px solid #ccc; /* Border around input fields */
+    border-radius: 4px; /* Rounded corners for input fields */
+    font-size: 16px; /* Font size for input text */
+    transition: border-color 0.3s ease; /* Transition for border color */
+  }
+  
+  .input:focus {
+    border-color: #007bff; /* Change border color on focus */
+    outline: none; /* Remove default outline */
+  }
+  
+  .button {
+    padding: 10px; /* Padding inside button */
+    background-color: #2ed856; /* Button background color */
+    color: white; /* Text color for button */
+    border: none; /* Remove border */
+    border-radius: 4px; /* Rounded corners for button */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-size: 16px; /* Font size for button text */
+    transition: background-color 0.3s ease; /* Transition for background color */
+  }
+  
+  .button:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+  }
+  
+  .button:disabled {
+    background-color: #6c757d; /* Background for disabled button */
+    cursor: not-allowed; /* Not-allowed cursor for disabled button */
+  }
+  
+  .error {
+    color: red; /* Color for error messages */
+    text-align: center; /* Center error messages */
+    margin-top: 10px; /* Space above error messages */
+  }
+  
+  .link {
+    text-align: center; /* Center links */
+    margin-top: 10px; /* Space above links */
+  }
+  
+  /* Media Queries for Responsive Design */
+  
+  @media (max-width: 600px) {
+    .authContainer {
+      width: 90%; /* Responsive width for small screens */
+      padding: 15px; /* Responsive padding */
+    }
+  
+    .heading {
+      font-size: 20px; /* Responsive font size for heading */
+    }
+  
+    .input,
+    .button {
+      font-size: 14px; /* Responsive font size for input and button */
+      padding: 8px; /* Responsive padding */
+    }
+  }
+  
+  @media (max-width: 400px) {
+    .authContainer {
+      padding: 10px; /* Further reduce padding for very small screens */
+    }
+  
+    .heading {
+      font-size: 18px; /* Further reduce font size for heading */
+    }
+  
+    .input,
+    .button {
+      font-size: 12px; /* Further reduce font size for input and button */
+      padding: 6px; /* Further reduce padding */
+    }
+  }
+  /* src/Styles/Auth.module.css */
+
+.roleSelection {
+  margin: 15px 0;
+}
+
+.radioLabel {
+  margin-right: 10px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.radioInput {
+  margin-right: 5px;
+}

@@ -1,0 +1,66 @@
+/* Common styles for both dashboards */
+
+.dashboard {
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 40px; /* Add margin to separate from the edges */
+}
+
+.video {
+  width: 100%;
+  margin-bottom: 20px; /* Space between video list and other sections */
+}
+
+.videoList {
+  width: 100%; /* Make video list take full width */
+  max-width: 800px; /* Limit the maximum width */
+  margin: 0 auto; /* Center the video list */
+}
+
+.livestreamChatContainer {
+  display: flex; /* Enable flex layout */
+  width: 100%; /* Full width */
+  margin: 20px auto; /* Center the container */
+}
+
+.livestream {
+
+  flex: 0 0 70%; /* Flex-grow and flex-shrink set to 0, width 70% */
+  margin-right: 10px; /* Space between livestream and chat */
+  border: 1px solid #ccc; /* Optional: border around the livestream */
+  border-radius: 8px; /* Rounded corners */
+  padding: 10px; /* Inner spacing */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.chat {
+  
+  flex: 0 0 30%; /* Flex-grow and flex-shrink set to 0, width 30% */
+  border: 1px solid #ccc; /* Optional: border around the chat */
+  border-radius: 8px; /* Rounded corners */
+  padding: 10px; /* Inner spacing */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.assignment {
+  width: 100%;
+  max-width: 800px; /* Limit the maximum width */
+  margin: 20px auto; /* Center the assignment section */
+}
+
+/* Header style */
+.header {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px; /* Space below header */
+}
+
+/* Livestream title style */
+.livestreamTitle {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 10px; /* Space below title */
+}

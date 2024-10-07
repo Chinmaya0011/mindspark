@@ -1,0 +1,69 @@
+/* VideoUploadButton.module.css */
+
+/* Container for the upload button */
+.uploadButtonContainer {
+  display: flex;
+  justify-content: flex-start; /* Align button to the right */
+}
+
+/* Style for the Add Video button */
+.addButton {
+  background-color: #40c5df; /* Primary button color */
+  color: white; /* Text color for button */
+  padding: 10px 20px; /* Padding around the text */
+  border: none; /* Remove default border */
+  border-radius: 8px; /* Rounded corners */
+  font-size: 16px; /* Font size */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s, transform 0.2s; /* Smooth transitions for hover and press */
+}
+
+/* Hover and active states for the Add Video button */
+.addButton:hover {
+  background-color: #0056b3; /* Darker shade on hover */
+}
+
+.addButton:active {
+  transform: scale(0.95); /* Slightly shrink button when pressed */
+}
+
+/* Modal Styles */
+.modal {
+  position: fixed; /* Fixed position for modal */
+  top: 0; /* Align to the top */
+  left: 0; /* Align to the left */
+  right: 0; /* Align to the right */
+  bottom: 0; /* Align to the bottom */
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  display: flex; /* Flexbox for centering modal content */
+  justify-content: center; /* Center modal horizontally */
+  align-items: center; /* Center modal vertically */
+  z-index: 1000; /* Higher z-index to appear above other content */
+}
+
+/* Modal content */
+.modalContent {
+  background-color: white; /* Background for modal */
+  padding: 20px; /* Padding inside the modal */
+  border-radius: 12px; /* Rounded corners */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Soft shadow */
+  max-width: 500px; /* Maximum width for modal */
+  width: 100%; /* Full width for small screens */
+}
+
+/* Close button for the modal */
+.closeButton {
+  background-color: transparent; /* Transparent background */
+  border: none; /* No border */
+  color: #999; /* Color for close button */
+  font-size: 18px; /* Font size for close button */
+  cursor: pointer; /* Pointer cursor */
+  position: absolute; /* Position inside the modal */
+  top: 10px; /* Space from the top */
+  right: 10px; /* Space from the right */
+}
+
+/* Close button hover effect */
+.closeButton:hover {
+  color: #333; /* Darker color on hover */
+}

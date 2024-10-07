@@ -1,0 +1,30 @@
+.videoUploadContainer {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  .inputField,
+  .fileInput {
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .uploadButton {
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .uploadButton:hover {
+    background-color: #0056b3;
+  }
+  

@@ -1,0 +1,90 @@
+/* Base styles */
+.dashboardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  background: linear-gradient(135deg, #4a90e2, #4ac1e2);
+  color: #ffffff;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.welcomeText {
+  flex: 1;
+}
+
+.userName {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+}
+
+.userRole {
+  margin-right: 15px;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.logoutButton {
+  padding: 8px 16px;
+  background-color: #e74c3c;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.logoutButton:hover {
+  background-color: #c0392b;
+}
+
+/* Tablet styles */
+@media (max-width: 768px) {
+  .dashboardHeader {
+    flex-direction: column;
+    padding: 15px 20px;
+    text-align: center;
+  }
+
+  .welcomeText {
+    margin-bottom: 10px;
+  }
+
+  .userRole {
+    font-size: 0.9rem;
+    margin-right: 10px;
+  }
+
+  .logoutButton {
+    padding: 7px 14px;
+    font-size: 0.9rem;
+  }
+}
+
+/* Mobile styles */
+@media (max-width: 480px) {
+  .dashboardHeader {
+    padding: 10px 15px;
+  }
+
+  .userName {
+    font-size: 1rem;
+  }
+
+  .userRole {
+    font-size: 0.8rem;
+  }
+
+  .logoutButton {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+  }
+}
