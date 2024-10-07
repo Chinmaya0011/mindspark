@@ -6,7 +6,7 @@ const { Server } = require('socket.io');
 const connectDB = require('./config/db');
 const assignmentRoutes = require('./routes/assignmentRoutes');
 const videoRoutes = require('./routes/videoRoutes');
-const liveStreamRoutes = require('./routes/liveStreamRoutes'); // Import the new live stream route
+const liveStreamRoutes = require('./routes/liveStreamRoutes');
 
 // Load environment variables
 dotenv.config();
@@ -17,7 +17,9 @@ connectDB();
 const app = express();
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: 'https://mindspark-bice.vercel.app', // Your Vercel frontend URL
+}));
 app.use(express.json()); // For parsing application/json
 
 // Serve static files from the uploads directory
@@ -28,13 +30,13 @@ app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/users', require('./routes/userRoutes'));
 app.use('/api/assignments', assignmentRoutes);
 app.use('/api/videos', videoRoutes);
-app.use('/api/livestream', liveStreamRoutes); // Use the new live stream route
+app.use('/api/livestream', liveStreamRoutes);
 
 // Create HTTP server and integrate with Socket.IO
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: '*', // Update this for production
+    origin: '*', // Update this for production if necessary
     methods: ['GET', 'POST'],
   },
 });
@@ -45,7 +47,6 @@ const liveStreamNamespace = io.of('/livestream');
 liveStreamNamespace.on('connection', (socket) => {
   console.log('User connected to Live Stream:', socket.id);
 
-  // Handle WebRTC signaling events (offer, answer, and ice-candidate)
   socket.on('offer', (offer) => {
     console.log(`Received offer from ${socket.id}`);
     socket.broadcast.emit('offer', offer); // Broadcast the offer to other clients
