@@ -21,7 +21,7 @@ const app = express();
 // Middleware for CORS and JSON parsing
 app.use(cors({
   origin: [
-    'https://mindspark-bice.vercel.app', // Your Vercel frontend URL
+    'https://mindspark-flax.vercel.app', // Your Vercel frontend URL
     'http://localhost:5173', // Local development URL
   ],
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Allowed methods
@@ -45,7 +45,7 @@ const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
     origin: [
-      'https://mindspark-bice.vercel.app', // Your Vercel frontend URL
+      'https://mindspark-flax.vercel.app', // Your Vercel frontend URL
       'http://localhost:5173', // Local development URL
     ],
     methods: ['GET', 'POST'],
