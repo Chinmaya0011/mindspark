@@ -1,3 +1,4 @@
+// Import required packages
 const express = require('express');
 const dotenv = require('dotenv');
 const cors = require('cors');
@@ -14,30 +15,41 @@ dotenv.config();
 // Connect to the database
 connectDB();
 
+// Create an Express application
 const app = express();
 
-// Middleware
+// Middleware for CORS and JSON parsing
 app.use(cors({
-  origin: 'https://mindspark-bice.vercel.app', // Your Vercel frontend URL
+  origin: [
+    'https://mindspark-bice.vercel.app', // Your Vercel frontend URL
+    'http://localhost:5173', // Local development URL
+  ],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Allowed methods
+  credentials: true, // Include credentials in the requests
 }));
+
 app.use(express.json()); // For parsing application/json
 
 // Serve static files from the uploads directory
 app.use('/uploads', express.static('uploads'));
 
-// Routes
-app.use('/api/auth', require('./routes/authRoutes'));
-app.use('/api/users', require('./routes/userRoutes'));
-app.use('/api/assignments', assignmentRoutes);
-app.use('/api/videos', videoRoutes);
-app.use('/api/livestream', liveStreamRoutes);
+// Define your routes
+app.use('/api/auth', require('./routes/authRoutes')); // Authentication routes
+app.use('/api/users', require('./routes/userRoutes')); // User routes
+app.use('/api/assignments', assignmentRoutes); // Assignment routes
+app.use('/api/videos', videoRoutes); // Video routes
+app.use('/api/livestream', liveStreamRoutes); // Live stream routes
 
 // Create HTTP server and integrate with Socket.IO
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: '*', // Update this for production if necessary
+    origin: [
+      'https://mindspark-bice.vercel.app', // Your Vercel frontend URL
+      'http://localhost:5173', // Local development URL
+    ],
     methods: ['GET', 'POST'],
+    credentials: true,
   },
 });
 
@@ -47,6 +59,7 @@ const liveStreamNamespace = io.of('/livestream');
 liveStreamNamespace.on('connection', (socket) => {
   console.log('User connected to Live Stream:', socket.id);
 
+  // Handle WebRTC signaling events
   socket.on('offer', (offer) => {
     console.log(`Received offer from ${socket.id}`);
     socket.broadcast.emit('offer', offer); // Broadcast the offer to other clients
