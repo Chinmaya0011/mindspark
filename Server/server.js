@@ -3,6 +3,7 @@ const express = require('express');
 const dotenv = require('dotenv');
 const cors = require('cors');
 const http = require('http');
+const path = require('path'); // Import path for serving static files
 const { Server } = require('socket.io');
 const connectDB = require('./config/db');
 const assignmentRoutes = require('./routes/assignmentRoutes');
@@ -39,6 +40,16 @@ app.use('/api/users', require('./routes/userRoutes')); // User routes
 app.use('/api/assignments', assignmentRoutes); // Assignment routes
 app.use('/api/videos', videoRoutes); // Video routes
 app.use('/api/livestream', liveStreamRoutes); // Live stream routes
+
+// Serve frontend static files if in production
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, 'client/build')));
+
+  // Serve the frontend for any unknown route
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+  });
+}
 
 // Create HTTP server and integrate with Socket.IO
 const server = http.createServer(app);
@@ -93,6 +104,11 @@ liveStreamNamespace.on('connection', (socket) => {
   socket.on('disconnect', () => {
     console.log('User disconnected from Live Stream:', socket.id);
   });
+});
+
+// Catch-all route for unknown API routes
+app.use((req, res) => {
+  res.status(404).json({ message: 'API route not found' });
 });
 
 // Server Listening
