@@ -12,19 +12,21 @@ const StudentDashboard = () => {
     <div className={style.dashboardContainer}>
       <DashboardHeader />
       
+      <h1 className={style.dashboardTitle}>Student Dashboard</h1>
 
       <div className={style.videoSection}>
+        <h2 className={style.sectionTitle}>Video Management</h2>
         <VideoList />
       </div>
-      
+
       <div className={style.liveStreamSection}>
-        <LiveStream />
-        <Chat />
+        <LiveStream className={style.livestream} />
+        <Chat className={style.chat} />
       </div>
 
       <div className={style.assignmentSection}>
-        <AssignmentManagement />
-        <AssignmentList />
+        <AssignmentManagement className={style.AssignmentManagement} />
+        <AssignmentList className={style.AssignmentList} />
       </div>
     </div>
   );
