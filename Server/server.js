@@ -8,7 +8,7 @@ const { Server } = require('socket.io');
 const connectDB = require('./config/db');
 const assignmentRoutes = require('./routes/assignmentRoutes');
 const videoRoutes = require('./routes/videoRoutes');
-const liveStreamRoutes = require('./routes/liveStreamRoutes');
+const liveStreamRoutes = require('./routes/liveStreamRoutes'); // Ensure this is defined if needed
 
 // Load environment variables
 dotenv.config();
@@ -19,13 +19,15 @@ connectDB();
 // Create an Express application
 const app = express();
 
-// Middleware for CORS and JSON parsing
-app.use(cors({
-  origin: '*', // Allow all origins
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Allowed methods
-  credentials: true, // Include credentials in the requests
-}));
+// CORS options
+const corsOptions = {
+  origin: 'https://mindspark-flax.vercel.app', // Replace with your frontend URL
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  credentials: true,
+};
 
+// Middleware for CORS and JSON parsing
+app.use(cors(corsOptions));
 app.use(express.json()); // For parsing application/json
 
 // Serve static files from the uploads directory
@@ -36,7 +38,9 @@ app.use('/api/auth', require('./routes/authRoutes')); // Authentication routes
 app.use('/api/users', require('./routes/userRoutes')); // User routes
 app.use('/api/assignments', assignmentRoutes); // Assignment routes
 app.use('/api/videos', videoRoutes); // Video routes
-app.use('/api/livestream', liveStreamRoutes); // Live stream routes
+
+// If you want to keep API routes for live streaming, uncomment the following line
+// app.use('/api/livestream', liveStreamRoutes); // Uncomment if liveStreamRoutes are needed for REST API
 
 // Serve frontend static files if in production
 if (process.env.NODE_ENV === 'production') {
@@ -52,7 +56,7 @@ if (process.env.NODE_ENV === 'production') {
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: '*', // Allow all origins for Socket.IO
+    origin: 'https://mindspark-flax.vercel.app', // Replace with your frontend URL
     methods: ['GET', 'POST'],
     credentials: true,
   },
