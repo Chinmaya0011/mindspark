@@ -21,7 +21,7 @@ const app = express();
 
 // CORS options
 const corsOptions = {
-  origin: 'https://mindspark-flax.vercel.app', // Replace with your frontend URL
+  origin: ['http://localhost:5173', 'https://mindspark-flax.vercel.app'], // Allow both local and production URLs
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   credentials: true,
 };
@@ -38,9 +38,7 @@ app.use('/api/auth', require('./routes/authRoutes')); // Authentication routes
 app.use('/api/users', require('./routes/userRoutes')); // User routes
 app.use('/api/assignments', assignmentRoutes); // Assignment routes
 app.use('/api/videos', videoRoutes); // Video routes
-
-// If you want to keep API routes for live streaming, uncomment the following line
-// app.use('/api/livestream', liveStreamRoutes); // Uncomment if liveStreamRoutes are needed for REST API
+app.use('/api/livestream', liveStreamRoutes); // Use this if you have RESTful routes for live streams
 
 // Serve frontend static files if in production
 if (process.env.NODE_ENV === 'production') {
@@ -56,7 +54,7 @@ if (process.env.NODE_ENV === 'production') {
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: 'https://mindspark-flax.vercel.app', // Replace with your frontend URL
+    origin: ['http://localhost:5173', 'https://mindspark-flax.vercel.app'], // Allow both local and production URLs
     methods: ['GET', 'POST'],
     credentials: true,
   },
