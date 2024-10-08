@@ -28,20 +28,31 @@ const LiveStream = () => {
 
   useEffect(() => {
     const socketURL = import.meta.env.VITE_SOCKET_URL || 'http://localhost:5000/livestream';
-    socketRef.current = io(socketURL);
+    socketRef.current = io(socketURL, {
+      reconnection: true,
+      reconnectionAttempts: 5,
+      reconnectionDelay: 1000,
+    });
 
     socketRef.current.on('connect', () => setSocketId(socketRef.current.id));
     socketRef.current.on('offer', handleOffer);
     socketRef.current.on('answer', handleAnswer);
     socketRef.current.on('ice-candidate', handleNewICECandidate);
     socketRef.current.on('broadcast-status', setIsBroadcasting);
-    socketRef.current.on('disconnect', endBroadcast);
+    socketRef.current.on('disconnect', handleDisconnect);
 
     return () => {
       socketRef.current.disconnect();
       peerConnectionRef.current?.close();
     };
   }, []);
+
+  const handleDisconnect = (reason) => {
+    console.warn('Disconnected: ', reason);
+    if (reason === 'io server disconnect') {
+      socketRef.current.connect();
+    }
+  };
 
   const startBroadcast = async () => {
     setLoading(true);
@@ -65,8 +76,8 @@ const LiveStream = () => {
 
   const endBroadcast = () => {
     if (isBroadcaster) {
-      peerConnectionRef.current.close();
       socketRef.current.emit('end-broadcast');
+      peerConnectionRef.current?.close();
       setIsBroadcaster(false);
       setIsBroadcasting(false);
       videoRef.current.srcObject?.getTracks().forEach((track) => track.stop());
@@ -108,7 +119,9 @@ const LiveStream = () => {
   };
 
   const handleICECandidateEvent = (event) => {
-    if (event.candidate) socketRef.current.emit('ice-candidate', event.candidate);
+    if (event.candidate) {
+      socketRef.current.emit('ice-candidate', event.candidate);
+    }
   };
 
   const handleNewICECandidate = async (candidate) => {
