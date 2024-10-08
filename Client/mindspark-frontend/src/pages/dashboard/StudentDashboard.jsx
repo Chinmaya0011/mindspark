@@ -12,21 +12,17 @@ const StudentDashboard = () => {
     <div className={style.dashboardContainer}>
       <DashboardHeader />
       
-      <h1 className={style.dashboardTitle}>Student Dashboard</h1>
 
       <div className={style.videoSection}>
-        <h2 className={style.sectionTitle}>Videos</h2>
         <VideoList />
       </div>
       
       <div className={style.liveStreamSection}>
-        <h2 className={style.sectionTitle}>Live Stream</h2>
         <LiveStream />
         <Chat />
       </div>
 
       <div className={style.assignmentSection}>
-        <h2 className={style.sectionTitle}>Assignments</h2>
         <AssignmentManagement />
         <AssignmentList />
       </div>

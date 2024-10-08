@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { io } from 'socket.io-client';
 import { FaPaperPlane, FaUserCircle } from 'react-icons/fa';
+import './Chat.css'; // Import your CSS file
 
 const Chat = () => {
   const socketRef = useRef();
@@ -47,57 +48,41 @@ const Chat = () => {
   };
 
   return (
-    <div className="flex flex-col p-4 rounded-lg w-full h-full bg-white shadow-2xl">
-      <div className="flex-grow overflow-y-auto p-2 rounded-lg shadow-inner h-full">
+    <div className="chat-container">
+      <div className="messages-container">
         {messages.map((msg, index) => (
           <div
             key={index}
-            className={`p-2 mb-2 rounded-lg ${
-              msg.role === 'student' ? 'bg-gradient-to-r from-green-600 to-black' : 'bg-gradient-to-r from-red-600 to-black'
-            }`}
+            className={`messages`}
           >
-            <strong className="text-white font-bold">{msg.text}</strong>
-            <div className="text-xs text-gray-300">
+            <strong className="message-text">{msg.text}</strong>
+            <div className="message-info">
               <span>{msg.sender} ({msg.role})</span>
-              <span className="ml-2">[{msg.time}]</span>
+              <span className="message-time">[{msg.time}]</span>
             </div>
           </div>
         ))}
         <div ref={messagesEndRef} /> {/* Reference for scrolling */}
       </div>
-      <div className="flex mt-2 w-full">
-        <div className="flex items-center border border-gray-300 rounded-l-md w-9/12">
-          <FaUserCircle className="text-gray-400 ml-2" />
-          <input
-            type="text"
-            className="flex-grow p-2 focus:outline-none"
-            value={inputMessage}
-            onChange={(e) => setInputMessage(e.target.value)}
-            onKeyPress={(e) => e.key === 'Enter' && sendMessage()}
-            placeholder="Type a message..."
-            aria-label="Message input" // Accessibility
-          />
-        </div>
+      <div className="input-container">
+        <FaUserCircle className="user-icon" />
+        <input
+          type="text"
+          className="input-message"
+          value={inputMessage}
+          onChange={(e) => setInputMessage(e.target.value)}
+          onKeyPress={(e) => e.key === 'Enter' && sendMessage()}
+          placeholder="Type a message..."
+          aria-label="Message input" // Accessibility
+        />
         <button
-          className="w-3/12 p-2 bg-blue-500 text-white rounded-r-md hover:bg-blue-600 transition duration-200 flex items-center justify-center"
+          className="send-button"
           onClick={sendMessage}
           aria-label="Send message" // Accessibility
         >
-          <FaPaperPlane className="mr-1" />
+          <FaPaperPlane className="send-icon" />
         </button>
       </div>
-
-      {/* Webkit scrollbar styles */}
-      <style jsx>{`
-        .overflow-y-auto {
-          overflow-y: scroll; /* Enable scrolling */
-          scrollbar-width: none; /* For Firefox */
-        }
-
-        .overflow-y-auto::-webkit-scrollbar {
-          display: none; /* For Chrome, Safari, and Edge */
-        }
-      `}</style>
     </div>
   );
 };
