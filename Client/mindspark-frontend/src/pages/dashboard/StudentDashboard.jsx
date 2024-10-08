@@ -1,31 +1,34 @@
 import React from 'react';
 import DashboardHeader from '../../components/Dashboard/DashboardHeader';
-import style from "../../Styles/dashboardStyles.module.css"; // Import shared styles
 import AssignmentList from '../../components/Dashboard/Student/AssignmentList';
 import VideoList from '../../components/Dashboard/Instructor/VideoList';
 import LiveStream from '../../components/LiveStream';
 import Chat from '../../components/Chat';
+import AssignmentManagement from '../../components/Dashboard/Instructor/AssignmentManagement';
+import style from "../../Styles/dashboardStyles.module.css";
 
 const StudentDashboard = () => {
   return (
-    <div>
-      <DashboardHeader className={style.header} />
-      <div className={style.video}>
-        <VideoList className={style.videoList} />
+    <div className={style.dashboardContainer}>
+      <DashboardHeader />
+      
+      <h1 className={style.dashboardTitle}>Student Dashboard</h1>
+
+      <div className={style.videoSection}>
+        <h2 className={style.sectionTitle}>Videos</h2>
+        <VideoList />
       </div>
-      <div className={style.dashboard}>
-        <div className={style.livestreamChatContainer}>
-          <div className={style.livestream}>
-            <h2 className={style.livestreamTitle}>Live Stream</h2>
-            <LiveStream />
-          </div>
-          <div className={style.chat}>
-            <Chat />
-          </div>
-        </div>
-        <div className={style.assignment}>
-          <AssignmentList />
-        </div>
+      
+      <div className={style.liveStreamSection}>
+        <h2 className={style.sectionTitle}>Live Stream</h2>
+        <LiveStream />
+        <Chat />
+      </div>
+
+      <div className={style.assignmentSection}>
+        <h2 className={style.sectionTitle}>Assignments</h2>
+        <AssignmentManagement />
+        <AssignmentList />
       </div>
     </div>
   );

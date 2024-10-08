@@ -1,4 +1,3 @@
-import styles from '../Styles/LiveStream.module.css';
 import React, { useEffect, useRef, useState } from 'react';
 import { io } from 'socket.io-client';
 import {
@@ -28,7 +27,6 @@ const LiveStream = () => {
   const servers = { iceServers: [{ urls: 'stun:stun.l.google.com:19302' }] };
 
   useEffect(() => {
-    // Use environment variable for socket URL
     const socketURL = import.meta.env.VITE_SOCKET_URL || 'http://localhost:5000/livestream';
     socketRef.current = io(socketURL);
 
@@ -140,9 +138,9 @@ const LiveStream = () => {
   };
 
   return (
-    <div className={styles.container}>
-      <div className={styles.videoContainer}>
-        <h3 className={styles.header}>
+    <div className="flex flex-col items-center justify-center w-full h-full">
+      <div className="relative w-full max-w-2xl bg-white rounded-lg shadow-lg p-4">
+        <h3 className="text-lg font-semibold mb-2 text-center">
           {user.name} || {user.role}
         </h3>
         <video
@@ -150,17 +148,18 @@ const LiveStream = () => {
           autoPlay
           playsInline
           muted={user?.role === "Instructor"} // Instructors should be muted
-          className={styles.video}
+          style={{ width: '100%', height: '100%' }} // Set width and height to 100%
+          className="rounded-md"
         />
         {isBroadcasting && user?.role === "Instructor" && (
-          <div className={styles.redDot}>Live</div>
+          <div className="absolute top-2 left-2 bg-red-500 text-white text-xs font-bold py-1 px-2 rounded">Live</div>
         )}
-        {loading && <div className={styles.loading}>Starting Broadcast...</div>} {/* Loading feedback */}
+        {loading && <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 text-white">Starting Broadcast...</div>}
         {user?.role === "Instructor" ? (
           <>
             {!isBroadcaster ? (
               <button
-                className={styles.button}
+                className="mt-4 w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition"
                 onClick={startBroadcast}
                 aria-label="Start Broadcast"
               >
@@ -168,30 +167,30 @@ const LiveStream = () => {
               </button>
             ) : (
               <button
-                className={styles.button}
+                className="mt-4 w-full bg-red-500 text-white py-2 rounded hover:bg-red-600 transition"
                 onClick={endBroadcast}
                 aria-label="Stop Broadcast"
               >
-                Stop    <FaSignOutAlt className={styles.signOut}/>
+                Stop <FaSignOutAlt className="inline ml-1" />
               </button>
             )}
-            <div className={styles.controls}>
+            <div className="flex space-x-2 mt-4">
               <button
-                className={styles.button}
+                className="flex items-center justify-center w-full bg-gray-200 p-2 rounded hover:bg-gray-300 transition"
                 onClick={toggleMute}
                 aria-label={isMuted ? "Unmute" : "Mute"}
               >
                 {isMuted ? <FaMicrophoneSlash /> : <FaMicrophone />}
               </button>
               <button
-                className={styles.button}
+                className="flex items-center justify-center w-full bg-gray-200 p-2 rounded hover:bg-gray-300 transition"
                 onClick={togglePause}
                 aria-label={isPaused ? "Play" : "Pause"}
               >
                 {isPaused ? <FaPlay /> : <FaPause />}
               </button>
               <button
-                className={styles.button}
+                className="flex items-center justify-center w-full bg-gray-200 p-2 rounded hover:bg-gray-300 transition"
                 onClick={toggleFullscreen}
                 aria-label={isFullscreen ? "Exit Fullscreen" : "Enter Fullscreen"}
               >
@@ -202,12 +201,10 @@ const LiveStream = () => {
         ) : (
           <>
             {!isBroadcasting ? (
-              <div className={styles.noClassMessage}>
-                No live class available. Please check again some time later.
-              </div>
+              <div className="mt-4 text-center text-gray-600">No live class available. Please check again some time later.</div>
             ) : (
               <button
-                className={styles.button}
+                className="mt-4 w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition"
                 onClick={joinBroadcast}
                 aria-label="Join Broadcast"
               >
@@ -215,27 +212,20 @@ const LiveStream = () => {
               </button>
             )}
             {isBroadcasting && (
-              <div className={styles.controls}>
+              <div className="flex space-x-2 mt-4">
                 <button
-                  className={styles.button}
+                  className="flex items-center justify-center w-full bg-gray-200 p-2 rounded hover:bg-gray-300 transition"
                   onClick={togglePause}
                   aria-label={isPaused ? "Play" : "Pause"}
                 >
                   {isPaused ? <FaPlay /> : <FaPause />}
                 </button>
                 <button
-                  className={styles.button}
+                  className="flex items-center justify-center w-full bg-gray-200 p-2 rounded hover:bg-gray-300 transition"
                   onClick={leaveBroadcast}
                   aria-label="Leave Broadcast"
                 >
-                  Leave Broadcast <FaSignOutAlt />
-                </button>
-                <button
-                  className={styles.button}
-                  onClick={toggleFullscreen}
-                  aria-label={isFullscreen ? "Exit Fullscreen" : "Enter Fullscreen"}
-                >
-                  {isFullscreen ? <FaCompress /> : <FaExpand />}
+                  Leave <FaSignOutAlt className="inline ml-1" />
                 </button>
               </div>
             )}

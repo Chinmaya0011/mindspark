@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { logout } from '../../redux/authSlice';
 import Swal from 'sweetalert2';
-import styles from '../../Styles/DashboardHeader.module.css'; // Import your CSS module
 
 const DashboardHeader = () => {
   const dispatch = useDispatch();
@@ -31,24 +30,24 @@ const DashboardHeader = () => {
   };
 
   return (
-    <div className={styles.dashboardHeader}>
-      <div className={styles.welcomeText}>
-        <p className={styles.userName}>Welcome, {user.name}</p>
-      </div>
-      <div className={styles.userInfo}>
-        {user ? (
-          <>
-            <p className={styles.userRole}>Role: {user.role}</p>
-          </>
-        ) : (
-          <p className={styles.welcomeMessage}>Welcome!</p>
-        )}
-        <button 
-          onClick={handleLogout} 
-          className={styles.logoutButton}
-        >
-          Logout
-        </button>
+    <div className="fixed top-0 left-0 right-0 p-4 bg-gradient-to-r from-purple-600 to-blue-600 text-white shadow-lg  z-50">
+      <div className="flex justify-between items-center">
+        <p className="text-lg font-semibold">Welcome, {user.name}</p>
+        <div className="flex items-center">
+          {user ? (
+            <>
+              <p className="mr-4 text-sm">Role: {user.role}</p>
+            </>
+          ) : (
+            <p className="mr-4 text-sm">Welcome!</p>
+          )}
+          <button 
+            onClick={handleLogout} 
+            className="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-500 transition duration-200 focus:outline-none focus:ring-2 focus:ring-red-300"
+          >
+            Logout
+          </button>
+        </div>
       </div>
     </div>
   );
