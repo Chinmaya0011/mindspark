@@ -4,11 +4,13 @@ const dotenv = require('dotenv');
 const cors = require('cors');
 const http = require('http');
 const path = require('path'); // Import path for serving static files
+const fs = require('fs'); // Import fs for logging
 const { Server } = require('socket.io');
 const connectDB = require('./config/db');
 const assignmentRoutes = require('./routes/assignmentRoutes');
 const videoRoutes = require('./routes/videoRoutes');
 const liveStreamRoutes = require('./routes/liveStreamRoutes'); // Ensure this is defined if needed
+const requestLogger = require('./middleware/requestLogger'); // Import the request logger
 
 // Load environment variables
 dotenv.config();
@@ -29,6 +31,14 @@ const corsOptions = {
 // Middleware for CORS and JSON parsing
 app.use(cors(corsOptions));
 app.use(express.json()); // For parsing application/json
+
+// Middleware for logging requests
+const logsDir = path.join(__dirname, 'logs');
+if (!fs.existsSync(logsDir)) {
+  fs.mkdirSync(logsDir);
+}
+
+app.use(requestLogger); // Use the logging middleware
 
 // Serve static files from the uploads directory
 app.use('/uploads', express.static('uploads'));
