@@ -7,7 +7,7 @@ import LiveStream from '../../components/LiveStream';
 import Chat from '../../components/Chat';
 import AssignmentList from '../../components/Dashboard/Student/AssignmentList';
 import style from "../../Styles/dashboardStyles.module.css";
-
+import Footer from '../../components/Dashboard/Footer';
 const InstructorDashboard = () => {
   return (
     <div className={style.dashboardContainer}>
@@ -16,7 +16,6 @@ const InstructorDashboard = () => {
       <h1 className={style.dashboardTitle}>Instructor Dashboard</h1>
       
       <div className={style.videoSection}>
-        <h2 className={style.sectionTitle}>Video Management</h2>
         <VideoList />
         <VideoUploadButton />
       </div>
@@ -32,6 +31,7 @@ const InstructorDashboard = () => {
         <AssignmentManagement className={style.AssignmentManagement}/>
         <AssignmentList className={style.AssignmentList} />
       </div>
+      <Footer/>
     </div>
   );
 };
