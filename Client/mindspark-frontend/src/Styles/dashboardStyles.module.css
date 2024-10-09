@@ -1,3 +1,4 @@
+/* Base Styles (for Desktop/Large screens) */
 .dashboardContainer {
   padding: 20px;
   background-color: #f9f9f9;
@@ -13,7 +14,7 @@
 }
 
 .videoSection {
-  margin: 40px 0 20px 0; 
+  margin: 40px 0 20px 0;
   padding: 20px;
   background-color: #fff;
   border-radius: 8px;
@@ -48,15 +49,7 @@
   margin: 20px 0;
 }
 
-.assignmentManagement {
-  height: 100%;
-  width: 50%;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
-  padding: 10px;
-}
-
+.assignmentManagement,
 .assignmentList {
   height: 100%;
   width: 50%;
@@ -66,4 +59,57 @@
   padding: 10px;
 }
 
+/* Media Queries for Mobile Devices */
+@media only screen and (max-width: 768px) {
+  .liveStreamSection {
+    flex-direction: column;
+    align-items: center;
+  }
 
+  .livestream,
+  .chat {
+    width: 100%;
+    height: 300px;
+    margin: 10px 0;
+  }
+
+  .assignmentSection {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .assignmentManagement,
+  .assignmentList {
+    width: 100%;
+    margin: 10px 0;
+  }
+
+  .dashboardTitle {
+    font-size: 1.5rem;
+  }
+
+  .videoSection {
+    padding: 10px;
+    margin: 20px 0;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .dashboardContainer {
+    padding: 10px;
+  }
+
+  .dashboardTitle {
+    font-size: 1.2rem;
+  }
+
+  .livestream,
+  .chat {
+    height: 250px;
+  }
+
+  .assignmentManagement,
+  .assignmentList {
+    padding: 5px;
+  }
+}
