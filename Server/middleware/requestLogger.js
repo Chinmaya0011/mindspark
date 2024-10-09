@@ -8,11 +8,17 @@ const logFilePath = path.join(__dirname, '../logs', 'request_logs.txt');
 const requestLogger = (req, res, next) => {
   const startTime = Date.now(); // Start time for calculating request duration
 
+  // Function to get the real IP address
+  const getClientIp = (req) => {
+    const xForwardedFor = req.headers['x-forwarded-for'];
+    return xForwardedFor ? xForwardedFor.split(',')[0] : req.connection.remoteAddress;
+  };
+
   // Capture the response end event to log the status code and duration
   res.on('finish', () => {
     const duration = Date.now() - startTime; // Calculate the duration
     const logEntry = `
-      IP: ${req.ip}, 
+      IP: ${getClientIp(req)}, 
       Method: ${req.method}, 
       URL: ${req.originalUrl}, 
       Time: ${new Date().toISOString()}, 
