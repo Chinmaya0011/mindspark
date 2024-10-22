@@ -11,6 +11,7 @@ const assignmentRoutes = require('./routes/assignmentRoutes');
 const videoRoutes = require('./routes/videoRoutes');
 const liveStreamRoutes = require('./routes/liveStreamRoutes'); // Ensure this is defined if needed
 const requestLogger = require('./middleware/requestLogger'); // Import the request logger
+const logRoutes = require('./routes/logRoutes'); // Import the log routes
 
 // Load environment variables
 dotenv.config();
@@ -49,6 +50,9 @@ app.use('/api/users', require('./routes/userRoutes')); // User routes
 app.use('/api/assignments', assignmentRoutes); // Assignment routes
 app.use('/api/videos', videoRoutes); // Video routes
 app.use('/api/livestream', liveStreamRoutes); // Use this if you have RESTful routes for live streams
+
+// Add log routes
+app.use('/api/logs', logRoutes); // Log routes
 
 // Serve frontend static files if in production
 if (process.env.NODE_ENV === 'production') {

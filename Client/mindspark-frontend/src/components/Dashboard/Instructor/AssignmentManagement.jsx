@@ -110,7 +110,7 @@ const AssignmentManagement = () => {
           className="w-full p-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-300 shadow-lg"
         >
           <FaChalkboardTeacher className="inline-block mr-2" />
-          Create Assignment
+          Create Note
         </button>
       </form>
     </div>

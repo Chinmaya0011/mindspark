@@ -27,7 +27,9 @@ const VideoUploadButton = () => {
 
       {/* Modal for Video Upload */}
       <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
-        <VideoUpload />
+        <div className="p-4 bg-white rounded-lg shadow-lg">
+          <VideoUpload />
+        </div>
       </Modal>
     </div>
   );

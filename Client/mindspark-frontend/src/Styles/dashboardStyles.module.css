@@ -22,32 +22,61 @@
 }
 
 .liveStreamSection {
-  display: flex;
-  justify-content: space-between;
-  margin: 20px 0;
-  height: auto;
+  padding: 10px;
+  display: flex; /* Maintain a flex layout */
+  margin: 10px;
+  overflow-y: hidden; /* Hide vertical scrollbar */
+  position: relative; /* Necessary for positioning the scrollable area */
 }
 
 .livestream {
   width: 70%;
-  height: 500px;
   border-radius: 8px;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+  overflow-y: scroll; /* Allow vertical scrolling for the livestream */
+  scrollbar-width: none; /* Hide scrollbar in Firefox */
+  -ms-overflow-style: none; /* Hide scrollbar in Internet Explorer and Edge */
+}
+
+.livestream::-webkit-scrollbar {
+  display: none; /* Hide scrollbar in Safari and Chrome */
 }
 
 .chat {
   width: 30%;
-  height: 500px;
   border-radius: 8px;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+  overflow-y: scroll; /* Allow vertical scrolling for the chat */
+  scrollbar-width: none; /* Hide scrollbar in Firefox */
+  -ms-overflow-style: none; /* Hide scrollbar in Internet Explorer and Edge */
+}
+
+.chat::-webkit-scrollbar {
+  display: none; /* Hide scrollbar in Safari and Chrome */
 }
 
 .assignmentSection {
-  overflow-y: auto;
+  height: 520px;
+  padding: 10px;
+  overflow-y: scroll; /* Allow vertical scrolling */
   display: flex;
-  height: 500px;
-  margin: 20px 0;
+ 
+  margin: 10px;
+
+  /* Hide scrollbar in Firefox */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer and Edge */
 }
+
+.assignmentSection::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
+
+/* Optionally, add a custom style for scrolling without scrollbar */
+.assignmentSection::-webkit-scrollbar-thumb {
+  background: transparent; /* Invisible thumb */
+}
+
 
 .assignmentManagement,
 .assignmentList {
