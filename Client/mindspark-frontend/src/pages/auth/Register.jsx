@@ -59,6 +59,9 @@ const Register = () => {
     return <Navigate to={user.role === 'Instructor' ? '/dashboard/instructor' : '/dashboard/student'} />;
   }
 
+  // Disable button when role is Instructor
+  const isDisabled = role === 'Instructor';
+
   return (
     <div className={style.auth}>
       <div className={style.authContainer}>
@@ -113,7 +116,11 @@ const Register = () => {
             </label>
           </div>
 
-          <button type="submit" className={style.button}>
+          <button
+            type="submit"
+            className={`${style.button} ${isDisabled ? style.disabled : ''}`} // Add disabled class
+            disabled={isDisabled} // Disable button
+          >
             Register
           </button>
         </form>

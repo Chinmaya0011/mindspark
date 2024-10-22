@@ -128,3 +128,8 @@
 .radioInput {
   margin-right: 5px;
 }
+.disabled {
+  background-color: #d1d1d1; /* Grey background */
+  cursor: not-allowed; /* Change cursor to not-allowed */
+  color: #a0a0a0; /* Grey text color */
+}
